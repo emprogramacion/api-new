@@ -1,5 +1,14 @@
 # api-new
 Introducción al testing
+Comprensión de conceptos y funcionamiento de pruebas unitarias y pruebas funcionales por medio de un ejemplo básico, que trata de consultar si existe una vista.
+Se aplicaron los 3 pasos del testing:
+* Rojo: 
+Primer paso, creamos la prueba y no tiene código creado, por defecto ocasiona una falla.
+
+* Verde: Segundo paso, construimos el código de la prueba y la prueba consulta claramente y correctamente el código que se ha construido de la aplicación.
+
+* Refactor: 
+Tercer paso, hacemos el código más elegante, se le agregan comentarios, se hace bastante entendible para el resto del equipo (compañeros). Se puede realizar o no. No se altera (modifica) el código de la prueba, se altera (modifica) el código de la aplicación para mejorarlo y siempre debemos obtener el mismo resultado de la prueba (verde).
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
