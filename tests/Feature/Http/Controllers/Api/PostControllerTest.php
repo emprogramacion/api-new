@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers\Api;
 
+use App\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -13,7 +14,7 @@ class PostControllerTest extends TestCase
     public function test_store()
     {
 
-        //$this->withoutExceptionHandLing(); --> método para ver claramente los errores pruebas vs códigos 
+        //$this->withoutExceptionHandLing(); //--> método para ver claramente los errores pruebas vs códigos 
 
         //Construir un dato JSON
         $response = $this->json('POST', '/api/posts', [   
@@ -36,5 +37,23 @@ class PostControllerTest extends TestCase
         //Estatus HTTP 422
         $response -> assertStatus(422)
             ->assertJsonValidationErrors('title');
+    }
+
+    public function test_show()
+    {
+        $post = factory(Post::class)->create(); //Se creará un post.
+
+        $response = $this->json('GET', "/api/posts/$post->id"); // Se creará el post de id = 1.
+
+        $response->assertJsonStructure(['id', 'title', 'created_at', 'updated_at'])
+            ->assertJson(['title' => $post->title])
+            ->assertStatus(200); //OK, creado un recurso en BD
+    }
+
+    public function test_404_show()
+    {
+        $response = $this->json('GET', '/api/posts/1000');// Se colocan comillas simples si no usamos variables.
+
+        $response->assertStatus(404); //No existe el post
     }
 }
