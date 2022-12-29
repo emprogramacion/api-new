@@ -41,9 +41,9 @@ class PostControllerTest extends TestCase
 
     public function test_show()
     {
-        $post = factory(Post::class)->create(); //Se creará un post.
+        $post = factory(Post::class)->create(); //Se creará un post, se creará el post de id = 1.
 
-        $response = $this->json('GET', "/api/posts/$post->id"); // Se creará el post de id = 1.
+        $response = $this->json('GET', "/api/posts/$post->id");
 
         $response->assertJsonStructure(['id', 'title', 'created_at', 'updated_at'])
             ->assertJson(['title' => $post->title])
@@ -55,5 +55,23 @@ class PostControllerTest extends TestCase
         $response = $this->json('GET', '/api/posts/1000');// Se colocan comillas simples si no usamos variables.
 
         $response->assertStatus(404); //No existe el post
+    }
+
+    public function test_update()
+    {
+
+        //$this->withoutExceptionHandLing(); //--> método para ver claramente los errores pruebas vs códigos 
+        $post = factory(Post::class)->create(); //Se creará un post.
+
+        //Construir un dato JSON
+        $response = $this->json('PUT', "/api/posts/$post->id", [   
+            'title' => 'Nuevo'
+        ]);
+
+        $response->assertJsonStructure(['id', 'title', 'created_at', 'updated_at'])
+            ->assertJson(['title' => 'Nuevo'])
+            ->assertStatus(200); //OK
+
+        $this->assertDatabaseHas('posts', ['title' => 'Nuevo']); //Revisar en la BD esta información.
     }
 }
