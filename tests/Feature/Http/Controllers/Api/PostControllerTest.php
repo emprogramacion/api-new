@@ -63,7 +63,6 @@ class PostControllerTest extends TestCase
         //$this->withoutExceptionHandLing(); //--> método para ver claramente los errores pruebas vs códigos 
         $post = factory(Post::class)->create(); //Se creará un post.
 
-        //Construir un dato JSON
         $response = $this->json('PUT', "/api/posts/$post->id", [   
             'title' => 'Nuevo'
         ]);
@@ -73,5 +72,19 @@ class PostControllerTest extends TestCase
             ->assertStatus(200); //OK
 
         $this->assertDatabaseHas('posts', ['title' => 'Nuevo']); //Revisar en la BD esta información.
+    }
+
+    public function test_delete()
+    {
+
+        //$this->withoutExceptionHandLing(); //--> Esta linea nos ayuda a verificar si tenemos un error.
+        $post = factory(Post::class)->create(); //Se creará un post.
+
+        $response = $this->json('DELETE', "/api/posts/$post->id");
+
+        $response->assertSee(null)
+            ->assertStatus(204); //Sin contenido...
+
+        $this->assertDatabaseMissing('posts', ['id' => $post->id]); //Revisar en la BD que no existe esta información.
     }
 }
