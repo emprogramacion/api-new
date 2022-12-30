@@ -21,8 +21,15 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        // Si no colocamos un status HTTP, siempre mandará 200 OK.
+        return response()->json($this->post->paginate(), 200);
+
+        /*
+         Verificamos la respuesta y vemos la ventaja de poner esa estructura json en la prueba test_index
+         Usando el método dd()
+         return dd($this->post->paginate()); 
+         */
     }
 
     /**
