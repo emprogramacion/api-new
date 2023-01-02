@@ -1,4 +1,16 @@
 # api-new
+                                                                            # TDD (Test-Driven Development)
+                                                                              Desarrollo dirigido por tests   
+
+Descripción general: Este API fue realizada con TDD, realizamos los 3 pasos de aplicación de Testing. 
+En el utilizamos pruebas funcionales para validar los 5 métodos de un CRUD de una clase post, se valida que el título del post sea diligenciado correctamente (que sea requerido), también se valida si ingresa a un post que no existe, retornándole un status HTTP 404 por ejemplo.
+Se realizó validación para el acceso a las rutas por parte de usuarios logueados y usuarios no logueados. 
+En cada uno de los test se colocó un status HTTP.
+
+Se creó un requets de la clase post para validar que el título sea requerido. 
+
+Además, se creó el código de cada uno de los métodos del CRUD (store, update, show, index, delete), la ruta del api se protegió con un middleware de autenticación, por lo tanto el API está listo para ser consumido. 
+
 Introducción al testing
 Comprensión de conceptos y funcionamiento de pruebas unitarias y pruebas funcionales por medio de un ejemplo básico, que trata de consultar si existe una vista.
 Se aplicaron los 3 pasos del testing:
