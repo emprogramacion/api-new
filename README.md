@@ -1,12 +1,7 @@
 # api-new
-<<<<<<< HEAD
-TDD (Test-Driven Development - Desarrollo dirigido por tests)
-                                                                                 
-=======
-                                                                            # TDD (Test-Driven Development)
-                                                                              Desarrollo dirigido por tests   
 
->>>>>>> c0ff5bfe4847694ea0ed263467f1d851c1e08414
+TDD (Test-Driven Development - Desarrollo dirigido por tests)
+
 Descripción general: Este API fue realizada con TDD, realizamos los 3 pasos de aplicación de Testing. 
 En el utilizamos pruebas funcionales para validar los 5 métodos de un CRUD de una clase post, se valida que el título del post sea diligenciado correctamente (que sea requerido), también se valida si ingresa a un post que no existe, retornándole un status HTTP 404 por ejemplo.
 Se realizó validación para el acceso a las rutas por parte de usuarios logueados y usuarios no logueados. 
